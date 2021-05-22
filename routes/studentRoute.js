@@ -36,4 +36,20 @@ router.post("/update/:id", async (req, res) => {
   }
 });
 
+router.get("/", async (req, res) => {
+  try {
+    const all_student = await Student.findAll();
+    return res.send({
+      all_student,
+      success: true,
+    });
+  } catch (err) {
+    console.log("Error..... ", err);
+    return res.send({
+      error: err,
+      success: false,
+    });
+  }
+});
+
 module.exports = router;
